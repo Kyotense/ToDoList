@@ -5,15 +5,17 @@ from django.views.generic import ListView
 
 
 def index(request):
-    return render(request, 'todolist/todo.html')
-
-def list_index(request):
-    template_name = 'todolist/list_index.html'
+    template_name = 'todolist/todo.html'
     context_object_name = "lists"
     queryset = List.objects.all().order_by("title")
 
 def add_list(request):
-    pass
+    if(request.method == "POST"):
+        title = request.POST['title']
+
+        lst = List(title=title)
+
+        lst.save()
 
 def add_item(request):
     if(request.method == "POST"):
@@ -23,8 +25,4 @@ def add_item(request):
 
         item = Item(title=title, priority=priority, todo_list=todo_list)
 
-        
-
-
-def list_index(request):
-    pass
+        item.save()

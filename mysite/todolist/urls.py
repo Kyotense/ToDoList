@@ -1,5 +1,7 @@
 from django.conf.urls import url, include
 from . import views
+from todolist.views import index
+from todolist.models import Item, List
 from django.views.generic import ListView, DetailView
 
 urlpatterns = [

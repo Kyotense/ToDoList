@@ -4,7 +4,7 @@ from todolist.models import List, Item
 from django.views.generic import ListView
 
 
-def index(request):
+class index(ListView):
     template_name = 'todolist/todo.html'
     context_object_name = "lists"
     queryset = List.objects.all().order_by("title")

@@ -3,6 +3,8 @@ from django.template import Context, Template
 from todolist.models import List, Item
 from django.views.generic import ListView
 
+def main(request):
+    return render(request, 'todolist/main.html')
 
 class index(ListView):
     template_name = 'todolist/todo.html'

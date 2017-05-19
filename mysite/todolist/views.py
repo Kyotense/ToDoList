@@ -11,6 +11,14 @@ class index(ListView):
     context_object_name = "lists"
     queryset = List.objects.all().order_by("title")
 
+class item_list(ListView):
+    template_name = 'todolist/list.html'
+    context_object_name = "items"
+    #queryset = Item.objects.all()
+
+    def get_queryset(self):
+        return Item.objects.filter(todo_list_id=self.kwargs.get('todo_list_id'))
+
 def add_list(request):
     if(request.method == "POST"):
         title = request.POST['title']

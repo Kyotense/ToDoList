@@ -17,7 +17,7 @@ class item_list(ListView):
     #queryset = Item.objects.all()
 
     def get_queryset(self):
-        return Item.objects.filter(todo_list_id=self.kwargs.get('todo_list_id'))
+        return Item.objects.filter(todo_list_id=self.kwargs.get('todo_list_id')).order_by("-priority")
 
 def add_list(request):
     if(request.method == "POST"):

@@ -1,17 +1,18 @@
 {% extends 'todolist/main.html' %}
 {% block content %}
-{{items.todo_list}}
+<h1>{{items.0.todo_list}}</h1>
 <ul>
 {% for items in object_list %}
 {% if items.priority == 1 %}
-  <li style="color:blue;">{{items.title}}</li>
+  <li><input type="checkbox"><span style="color:blue;">{{items.title}}</span></li>
 {% endif %}
 {% if items.priority == 2 %}
-  <li style="color:purple;">{{items.title}}</li>
+  <li><input type="checkbox"><span style="color:purple;">{{items.title}}</span></li>
 {% endif %}
 {% if items.priority == 3 %}
-  <li style="color:red;">{{items.title}}</li>
+  <li><input type="checkbox"><span style="color:red">{{items.title}}</span></li>
 {% endif %}
 {% endfor %}
+  <li><input type="text"></li>
 </ul>
 {% endblock %}

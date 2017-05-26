@@ -13,6 +13,12 @@
   <li><input type="checkbox"><span style="color:red">{{items.title}}</span></li>
 {% endif %}
 {% endfor %}
-  <li><input type="text"></li>
+  <li><input type="text">
+    <form action="">
+      <input type="radio" name="priority" value="1"> 1
+      <input type="radio" name="priority" value="2"> 2
+      <input type="radio" name="priority" value="3"> 3 
+    </form>
+  </li>
 </ul>
 {% endblock %}

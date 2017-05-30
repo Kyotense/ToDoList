@@ -29,6 +29,7 @@ def add_list(request):
 
 def add_item(request):
     if(request.method == "POST"):
+        queryset = List.objects.all().order_by("title")
         title = request.POST['title']
         priority = request.POST['priority']
         todo_list = request.POST['todo_list']
@@ -36,3 +37,7 @@ def add_item(request):
         item = Item(title=title, priority=priority, todo_list=todo_list)
 
         item.save()
+
+        return redirect("/")
+    else:
+        return render(request, 'todolist/add.html')

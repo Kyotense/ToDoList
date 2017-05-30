@@ -8,4 +8,5 @@ urlpatterns = [
     #url(r'^$', views.main, name='main'),
     url(r'^$', index.as_view()),
     url(r'^(?P<todo_list_id>\d+)$', item_list.as_view()),
+    url(r'^add', views.add_item, name="add"),
 ]

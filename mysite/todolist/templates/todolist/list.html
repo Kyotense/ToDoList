@@ -13,12 +13,18 @@
   <li><input type="checkbox"><span style="color:red">{{items.title}}</span></li>
 {% endif %}
 {% endfor %}
-  <li><input type="text">
-    <form action="">
-      <input type="radio" name="priority" value="1"> 1
-      <input type="radio" name="priority" value="2"> 2
-      <input type="radio" name="priority" value="3"> 3 
-    </form>
-  </li>
-</ul>
+<form action="{% url 'add' %}" method="post">
+  {% csrf_token %}
+  <label for="title">Item</label><br />
+  <input type="text" name="title" id="title"><br />
+  <label for="priority">Priority</label><br />
+  <ul>
+    <input type="radio" name="priority" value="1"> 1
+    <input type="radio" name="priority" value="2"> 2
+    <input type="radio" name="priority" value="3"> 3
+  </ul>
+  <label for="todo_list">
+      <option value="{{List.title}}"></option>
+  <input type="submit" value="Submit">
+</form>
 {% endblock %}

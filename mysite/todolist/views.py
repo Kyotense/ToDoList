@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.template import Context, Template
 from todolist.models import List, Item
 from django.views.generic import ListView
@@ -31,9 +31,9 @@ def add_item(request):
     if(request.method == "POST"):
         title = request.POST['title']
         priority = request.POST['priority']
-        todo_list = request.POST.get("List")
+        todo_list_id = request.POST.get('todo_list_id', "1")
 
-        item = Item(title=title, priority=priority, todo_list=todo_list)
+        item = Item(title=title, priority=priority, todo_list_id=todo_list_id)
 
         item.save()
 

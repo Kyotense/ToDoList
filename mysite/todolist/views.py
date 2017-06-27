@@ -1,42 +1,38 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 from django.shortcuts import render, render_to_response, redirect
 from django.template import Context, Template
-from todolist.models import List, Item
+from todolist.models import Item, User
 from django.views.generic import ListView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-def main(request):
-    return render(request, 'todolist/main.html')
 
-class index(ListView):
-    template_name = 'todolist/todo.html'
-    context_object_name = "lists"
-    queryset = List.objects.all().order_by("title")
+# Create your views here.
+@login_required(login_url="login/")
+def index(request):
+    return render(request, "todolist/index.html")
 
-class item_list(ListView):
-    template_name = 'todolist/list.html'
-    context_object_name = "items"
-    #queryset = Item.objects.all()
-
-    def get_queryset(self):
-        return Item.objects.filter(todo_list_id=self.kwargs.get('todo_list_id')).order_by("-priority")
-
-def add_list(request):
-    if(request.method == "POST"):
-        title = request.POST['title']
-
-        lst = List(title=title)
-
-        lst.save()
-
+@login_required(login_url="login/")
 def add_item(request):
-    if(request.method == "POST"):
-        title = request.POST['title']
-        priority = request.POST['priority']
-        todo_list_id = request.POST.get('todo_list_id', "1")
+    if (request.method=="POST"):
+        title = request.POST["title"]
+        priority = request.POST["priority"]
 
-        item = Item(title=title, priority=priority, todo_list_id=todo_list_id)
+        item = Item(title=title, priority=priority)
 
         item.save()
 
-        return redirect("/")
-    else:
-        return render(request, 'todolist/list.html')
+    return redirect("/")
+
+def register(request):
+    pass
+
+
+class Item_List(LoginRequiredMixin, ListView):
+    template_name = "todolist/list.html"
+    context_object_name = "items"
+
+    def get_queryset(self):
+        return Item.objects.all()

@@ -23,4 +23,25 @@
 <input type="hidden" name="next" value= "{{next}}">
 </form>
 
+<p>Create a new account:</p>
+<form action="{% url 'register' %}" method="post">
+  {% csrf_token %}
+  <label for="username">Username</label><br />
+  <input type="text" name="username" id="username"><br />
+
+  <label for="first_name">First Name</label><br />
+  <input type="text" name="first_name" id="first_name"><br />
+
+  <label for="last_name">First Name</label><br />
+  <input type="text" name="last_name" id="last_name"><br />
+
+  <label for="email">Email</label><br />
+  <input type="text" name="email" id="email"><br />
+
+  <label for="password">Password</label><br />
+  <input type="text" name="password" id="password"><br />
+
+  <input type="submit" value="Submit">
+</form>
+
 {% endblock %}

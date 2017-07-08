@@ -4,13 +4,22 @@
 <ul>
 {% for items in object_list %}
 {% if items.priority == 1 %}
-  <li><input type="checkbox"><span style="color:blue;">{{items.title}}</span></li>
+  <li>
+    <span style="color:blue;">{{items.title}}</span>
+    <a href="/delete/{{items.id}}">Delete</a>
+  </li>
 {% endif %}
 {% if items.priority == 2 %}
-  <li><input type="checkbox"><span style="color:purple;">{{items.title}}</span></li>
+  <li>
+    <span style="color:purple;">{{items.title}}</span>
+    <a href="/delete/{{items.id}}">Delete</a>
+  </li>
 {% endif %}
 {% if items.priority == 3 %}
-  <li><input type="checkbox"><span style="color:red">{{items.title}}</span></li>
+  <li>
+    <span style="color:red">{{items.title}}</span>
+    <a href="/delete/{{items.id}}">Delete</a>
+  </li>
 {% endif %}
 {% endfor %}
 <form action="{% url 'add' %}" method="post">
@@ -24,6 +33,7 @@
     <input type="radio" name="priority" value="3"> 3
   </ul>
   <input type="submit" value="Submit">
+
 </form>
 
 {% endblock %}

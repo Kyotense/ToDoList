@@ -12,5 +12,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, {'template_name':'registration/logout.html'}),
     url(r'^add', views.add_item, name="add"),
+    url(r'^register', views.register, name="register"),
+    url(r'^delete/(?P<item_pk>.*)$', views.delete_items, name="delete"),
     #url(r'^list/$', Item_List.as_view()),
 ]
